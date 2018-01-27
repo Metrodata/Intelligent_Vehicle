@@ -11,8 +11,6 @@ let margin = {
 	innerWidth = canvas.width - margin.left - margin.right,
 	innerHeight = canvas.height - margin.top - margin.bottom;
 
-
-
 document.getElementsByTagName('body')[0].appendChild(canvas);
 let c = canvas.getContext("2d");
 
@@ -81,9 +79,9 @@ class Vehicle{
 			x:0,
 			y:0
 		};
-		this.maxspeed = 5;
+		this.maxspeed = 2;
 		this.r = m;
-		this.mass = m*m;
+		this.mass = 1;
 	}
 
 	display(){
@@ -94,7 +92,7 @@ class Vehicle{
 		c.save();
 		c.translate(this.location.x, this.location.y);
 		c.rotate(theta);
-		c.fillStyle = "rgba(0,0,0,0.5)"
+		c.fillStyle = "rgba(0,0,0)"
 		c.beginPath();
 		c.moveTo(0,-this.r*2);
 		c.lineTo(-this.r,this.r*2);
@@ -170,7 +168,7 @@ class Field{
 		this.field = [];
 		this.cols = Math.round(innerWidth/this.resolution);
 		this.rows = Math.round(innerHeight/this.resolution);
-		
+
 		for (var i = 0; i<= this.cols; i++) {
 			this.field.push([])
 			for (var j = 0; j<= this.rows; j++) {
@@ -246,7 +244,7 @@ let flowField = new Field(50);
 	c.translate(margin.left,margin.top);
 
 	// flowField.display();
-	
+
 	for (var i = v.length - 1; i >= 0; i--) {
 		v[i].display()
 		v[i].followFeild(flowField)
